@@ -26,7 +26,7 @@ class WheelBLCD : public WheelBase {
 		}
 
 		void update();
-	        virtual void update(double dt) {};
+	    virtual void update(double dt) {update();};
 			
 	private:
 
