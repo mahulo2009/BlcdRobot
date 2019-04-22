@@ -16,14 +16,15 @@ WheelBase * RobotFactoryBLDC::buildWheel(int index)
 {
     //Controller
     BLCDHardwareController * controller = 
-            new BLCDHardwareController(robot_confing->max_speed,
+            new BLCDHardwareController( index,
+                                        robot_confing->max_speed,
                                         robot_confing->min_duty,
                                         robot_confing->max_duty,
                                         robot_confing->wheel_config[index].can_id,
                                         robot_confing->wheel_config[index].invert);
 
     //Wheel
-    WheelBase * wheel = new WheelBLCD();
+    WheelBase * wheel = new WheelEncoder();
     wheel->attachController(controller);
 
     return wheel;

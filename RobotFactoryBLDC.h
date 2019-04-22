@@ -5,7 +5,7 @@
 #include <DifferentialWheeledRobot.h>
 #include "RosConfigBLDC.h"
 #include "BLCDHardwareController.h"
-#include "WheelBLCD.h"
+#include "WheelEncoder.h"
 
 class RobotFactoryBLDC : public RobotFactory {
 

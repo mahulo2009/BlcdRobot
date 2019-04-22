@@ -15,7 +15,7 @@ class RosConfigBLDC : public RosConfigBase {
             RosConfigBLDC();
 
             virtual void read(ros::NodeHandle &nh);
-
+           
             float robot_wheel_separation;
             float robot_wheel_radious;
             float max_speed;
