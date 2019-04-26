@@ -26,9 +26,10 @@ class BLCDHardwareController : public HardwareController {
            return current_velocity_;
         }
 
+        static void     init();
         static void     buffer_clean();
-        
-    
+        static void     buffer_read();
+            
     protected:
     
         virtual void    setupDirection(Wheel_Direction direction);       
@@ -41,7 +42,7 @@ class BLCDHardwareController : public HardwareController {
         friend void     handle_interrupt_3(mc_values *val);
         friend void     handle_interrupt_4(mc_values *val);
 
-        void            handler_(int index,mc_values *val);
+        void            handler_(mc_values *val);
 
         int             index_;
         float           max_speed_;			    //maximun speed of the motor in radians per second.
@@ -51,10 +52,6 @@ class BLCDHardwareController : public HardwareController {
         int             invert_;
         double          current_velocity_;
 
-
         Wheel_Direction wheel_direction_;       
 };
-
-void bldc_val_received_1(mc_values *val); 
-
 #endif
