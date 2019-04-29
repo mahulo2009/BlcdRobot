@@ -80,17 +80,22 @@ void BLCDHardwareController::velocity(double velocity)
     #endif
     
     //Convert radiand per second to rpm
-    //float rpm = abs(velocity) * (60/(2*PI)) * 15;
-    float rpm = abs(velocity) * 0.015;
+    float rpm = abs(velocity) * (60/(2*PI)) * 15;
+    //float rpm = abs(velocity) * 0.015;
     power(rpm);
 }
 
 void BLCDHardwareController::power(double rpm)
 {
+    /*
     if (rpm > 0.2) 
         rpm = 0.2; //TODO DEFINE THIS IN CONFIGURATION FILE.
     if (rpm < 0.05) 
         rpm = 0;
+    */
+    if (rpm > 2000) 
+        rpm = 2000; //TODO DEFINE THIS IN CONFIGURATION FILE.
+
 
     #ifdef BLCD_HARDWARE_CONTROLLER_DEBUG
     Serial.print("bldc_interface_set_forward_can:");
@@ -105,8 +110,8 @@ void BLCDHardwareController::power(double rpm)
         Serial.print("bldc_interface_set_duty_cycle:");
         Serial.println(rpm * invert_);
         #endif
-        //bldc_interface_set_rpm( rpm * invert_);
-        bldc_interface_set_duty_cycle( rpm * invert_);
+        bldc_interface_set_rpm( rpm * invert_);
+        //bldc_interface_set_duty_cycle( rpm * invert_);
     }
     else 
     {
@@ -114,8 +119,8 @@ void BLCDHardwareController::power(double rpm)
         Serial.print("bldc_interface_set_duty_cycle:");
         Serial.println(-rpm * invert_);
         #endif
-        //bldc_interface_set_rpm(-rpm * invert_);
-        bldc_interface_set_duty_cycle( -rpm * invert_);
+        bldc_interface_set_rpm(-rpm * invert_);
+        //bldc_interface_set_duty_cycle( -rpm * invert_);
     }
 }
 
